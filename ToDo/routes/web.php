@@ -23,8 +23,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
     Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+    
+    Route::get('/tasks/{id}/edit', [TaskController::class, 'edit'])->name('tasks.edit');      
+    Route::put('/tasks/{id}', [TaskController::class, 'update'])->name('tasks.update');       
+    
     Route::get('/tasks/{id}/complete', [TaskController::class, 'updateTaskStatus'])->name('tasks.complete');
     Route::get('/tasks/completed', [TaskController::class, 'completedTasks'])->name('tasks.completed');
     Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+
+    Route::get('/tasks/search/ajax', [TaskController::class, 'ajaxSearch'])->name('tasks.search.ajax');
 
 });

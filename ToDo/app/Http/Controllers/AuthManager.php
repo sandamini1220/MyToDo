@@ -30,7 +30,7 @@ class AuthManager extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate(); // Prevent session fixation
+            $request->session()->regenerate(); 
             return redirect()->intended(route('home'));
         }
 
@@ -67,7 +67,7 @@ class AuthManager extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed', // 'password_confirmation' field required in form
+            'password' => 'required|min:8|confirmed', 
         ]);
 
         $user = User::create([

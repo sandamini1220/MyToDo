@@ -12,7 +12,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // You can bind services or register packages here if needed.
+        
     }
 
     /**
