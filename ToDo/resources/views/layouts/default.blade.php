@@ -5,28 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@yield('title', 'To Do App')</title>
 
-    <!-- Bootstrap CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
 
-    <!-- Page-specific styles -->
     @yield('style')
   </head>
   <body class="d-flex flex-column h-100">
 
-    <!-- Navigation Header -->
     @include('include.header')
 
-    <!-- Main Page Content -->
     <main class="flex-shrink-0" style="padding-top: 70px;">
       <div class="container">
         @yield('content')
       </div>
     </main>
 
-    <!-- Footer -->
     @include('include.footer')
 
-    <!-- Bootstrap JS Bundle -->
     <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+
+    
+    @stack('scripts')
   </body>
 </html>
