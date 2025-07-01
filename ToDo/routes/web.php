@@ -2,12 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthManager;
-use App\Http\Controllers\TaskManager;
 use App\Http\Controllers\TaskController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', [TaskController::class, 'listTask'])->name('home');
 
 Route::get('login', [AuthManager::class, 'login'])->name('login');
 Route::post('login', [AuthManager::class, 'loginpost'])->name('login.post');
@@ -18,15 +15,16 @@ Route::post('register', [AuthManager::class, 'registerpost'])->name('register.po
 Route::post('logout', [AuthManager::class, 'logout'])->name('logout');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('welcome');
-    })->name('dashboard');
 
-    Route::get('task/add', [TaskManager::class, 'addTask'])->name('task.add');
+    Route::get('/dashboard', function () {
+        return redirect()->route('tasks.index');
+    })->name('dashboard');
 
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
     Route::get('/tasks/create', [TaskController::class, 'create'])->name('tasks.create');
-
-    
     Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
+    Route::get('/tasks/{id}/complete', [TaskController::class, 'updateTaskStatus'])->name('tasks.complete');
+    Route::get('/tasks/completed', [TaskController::class, 'completedTasks'])->name('tasks.completed');
+    Route::delete('/tasks/{id}', [TaskController::class, 'destroy'])->name('tasks.destroy');
+
 });

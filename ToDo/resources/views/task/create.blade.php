@@ -22,7 +22,7 @@
             <textarea class="form-control" id="taskDescription" name="description" rows="4" placeholder="Describe the task" required></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Add Task</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
 @endsection
