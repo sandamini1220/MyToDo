@@ -13,7 +13,13 @@
 
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
-                <input type="text" name="title" id="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $task->title) }}" required>
+                <input
+                    type="text"
+                    name="title"
+                    id="title"
+                    class="form-control @error('title') is-invalid @enderror"
+                    value="{{ old('title', $task->title) }}"
+                    required>
                 @error('title')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -21,7 +27,13 @@
 
             <div class="mb-3">
                 <label for="deadline" class="form-label">Deadline</label>
-                <input type="date" name="deadline" id="deadline" class="form-control @error('deadline') is-invalid @enderror" value="{{ old('deadline', $task->deadline->format('Y-m-d')) }}" required>
+                <input
+                    type="date"
+                    name="deadline"
+                    id="deadline"
+                    class="form-control @error('deadline') is-invalid @enderror"
+                    value="{{ old('deadline', $task->deadline->format('Y-m-d')) }}"
+                    required>
                 @error('deadline')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
@@ -29,8 +41,29 @@
 
             <div class="mb-3">
                 <label for="description" class="form-label">Description</label>
-                <textarea name="description" id="description" rows="4" class="form-control @error('description') is-invalid @enderror" required>{{ old('description', $task->description) }}</textarea>
+                <textarea
+                    name="description"
+                    id="description"
+                    rows="4"
+                    class="form-control @error('description') is-invalid @enderror"
+                    required>{{ old('description', $task->description) }}</textarea>
                 @error('description')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- New Status field -->
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select
+                    name="status"
+                    id="status"
+                    class="form-select @error('status') is-invalid @enderror"
+                    required>
+                    <option value="pending" {{ old('status', $task->status) == 'pending' ? 'selected' : '' }}>Pending</option>
+                    <option value="completed" {{ old('status', $task->status) == 'completed' ? 'selected' : '' }}>Completed</option>
+                </select>
+                @error('status')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
